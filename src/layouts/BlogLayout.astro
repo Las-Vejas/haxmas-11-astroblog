@@ -1,0 +1,55 @@
+---
+import Nav from '../components/Nav.astro';
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+
+// Import the FormattedDate component
+import FormattedDate from '../components/FormattedDate.astro';
+
+// Import CSS styles
+import '../styles/global.css';
+import '../styles/post.css';
+
+// Get the blog post data from props
+type Props = CollectionEntry<'blog'>['data'];
+const { title, description, pubDate, heroImage } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <script is:inline>
+            const theme = localStorage.getItem('theme') || 'light';
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark');
+            }
+        </script>
+    </head>
+    <body>
+<div class="">
+        <Nav />
+    <article class="post">
+        <!-- Header with post data -->
+        <header>
+            <h1>{title}</h1>
+            <p class="description">{description}</p>
+            {heroImage && (
+                <Image src={heroImage} format="webp" alt={title} class="hero" />
+            )}
+            <p class="date">
+                <FormattedDate date={pubDate} />
+            </p>
+        </header>
+
+        <!-- The post's content will be rendered in the slot tag -->
+        <div class="body">
+            <slot />
+        </div>
+    </article>
+</div>
+    </body>
+</html>

@@ -1,0 +1,13 @@
+---
+import DarkModeToggle from './DarkModeToggle.astro';
+---
+
+<nav class="flex items-center justify-between w-full h-16 mx-auto px-4" style="max-width: var(--max-width)">
+    <a href="/" class="nav-logo font-bold">blog.Vejas</a>
+    <div class="flex gap-x-4">
+        <a href="/">Home</a>
+        <a href="/posts">Posts</a>
+        <a href="/about">About</a>
+    </div>
+    <DarkModeToggle />
+</nav>

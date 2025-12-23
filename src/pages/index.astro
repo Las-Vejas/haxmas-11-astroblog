@@ -1,16 +1,34 @@
 ---
-
+// Import CSS styles
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <title>Astro</title>
+        <script is:inline>
+            // Prevent flash of unstyled content
+            const theme = localStorage.getItem('theme') || 'light';
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark');
+            }
+        </script>
+    </head>
+    <body>
+		 <Nav />
+        <main class="page-shell home">
+			
+            <div class="page-header">
+                <h1>Astro</h1>
+                <p class="tagline">Such a jolly blog! (written by a not so jolly (wannabe)developer)</p>
+				<p class="text-red-500">btw this site is under construction</p>
+                <a href="/posts" class="posts-link">See Posts</a>
+            </div>
+        </main>
+    </body>
 </html>
